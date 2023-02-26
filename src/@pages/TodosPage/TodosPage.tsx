@@ -1,6 +1,6 @@
 import { Card } from '@components';
 import styles from './TodosPage.module.scss';
-import { ReactComponent as Logo } from '/public/logo.svg';
+import { ReactComponent as Logo } from '@assets/logo.svg';
 
 function TodosPage() {
 	return (

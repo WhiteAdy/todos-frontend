@@ -2,7 +2,10 @@ import { Button, Card, TextField } from '@components';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import styles from './SignupPage.module.scss';
-import { ReactComponent as Logo } from '/public/logo.svg';
+import { ReactComponent as Logo } from '@assets/logo.svg';
+import { signupPost } from './SignupPage.api';
+import { useMutation } from '@tanstack/react-query';
+import { ISignupMutationProps } from './SignupPage.types';
 
 const FORM_ID = 'signup-form';
 
@@ -11,11 +14,14 @@ function SignupPage() {
 		handleSubmit,
 		register,
 		formState: { errors },
-	} = useForm();
-	const onSubmit = (values: Record<string, string>) => {
-		console.log('values: ', values);
-		console.log('errors: ', errors);
-	};
+	} = useForm<ISignupMutationProps>();
+
+	const onSubmit = (values: ISignupMutationProps) => mutate(values);
+
+	const { mutate } = useMutation(signupPost, {
+		onSuccess: (data) => console.log('success: ', data),
+		onError: (err) => console.log('err: ', err),
+	});
 
 	return (
 		<div className={styles.SignupPage}>
