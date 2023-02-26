@@ -17,17 +17,17 @@ function SignupPage() {
 		formState: { errors: formErrors },
 	} = useForm<ISignupMutationProps>();
 
-	const navitate = useNavigate();
+	const navigate = useNavigate();
 	const { enqueueSnackbar } = useSnackbar();
-
-	const onSubmit = (values: ISignupMutationProps) => mutate(values);
 
 	const { mutate, error: mutationError } = useMutation(signupPost, {
 		onSuccess: (responseMsg) => {
 			enqueueSnackbar(responseMsg);
-			navitate('/login');
+			navigate('/login');
 		},
 	});
+
+	const onSubmit = (values: ISignupMutationProps) => mutate(values);
 
 	return (
 		<div className={styles.SignupPage}>
@@ -69,21 +69,19 @@ function SignupPage() {
 					/>
 					<Link to="/login">Do have an account? Sign in.</Link>
 					<div className={styles.errors_container}>
-						<>
-							{Object.entries(formErrors).map(([key, error]) => (
-								<h6
-									key={`signup-error-${key}`}
-									className={styles.error}
-								>
-									* {error!.message as string}
-								</h6>
-							))}
-							{mutationError && (
-								<h6 className={styles.error}>
-									{mutationError as string}
-								</h6>
-							)}
-						</>
+						{Object.entries(formErrors).map(([key, error]) => (
+							<h6
+								key={`signup-error-${key}`}
+								className={styles.error}
+							>
+								* {error!.message as string}
+							</h6>
+						))}
+						{(mutationError as string) && (
+							<h6 className={styles.error}>
+								{mutationError as string}
+							</h6>
+						)}
 					</div>
 				</form>
 				<Button className={styles.submit} form={FORM_ID}>

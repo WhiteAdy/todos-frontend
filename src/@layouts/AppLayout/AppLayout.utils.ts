@@ -1,8 +1,10 @@
+import { useUserContext } from '@contexts';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function useHeaderButtonProps() {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
+	const { logout } = useUserContext();
 
 	switch (pathname) {
 		case '/login':
@@ -22,9 +24,7 @@ function useHeaderButtonProps() {
 		default:
 			return {
 				label: 'Logout',
-				onClick: () => {
-					navigate('/login');
-				},
+				onClick: logout,
 			};
 	}
 }

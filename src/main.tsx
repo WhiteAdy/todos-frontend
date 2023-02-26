@@ -22,11 +22,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<QueryClientProvider client={queryClient}>
-				<UserContextProvider>
-					<SnackbarProvider {...snackbarProviderProps}>
+				<SnackbarProvider {...snackbarProviderProps}>
+					<UserContextProvider>
 						<App />
-					</SnackbarProvider>
-				</UserContextProvider>
+					</UserContextProvider>
+				</SnackbarProvider>
 			</QueryClientProvider>
 		</BrowserRouter>
 	</React.StrictMode>
