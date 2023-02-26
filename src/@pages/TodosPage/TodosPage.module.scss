@@ -3,21 +3,35 @@
 	display: grid;
 	place-items: center;
 
-	.titleContainer {
+	.card {
 		display: flex;
 		flex-direction: column;
-		gap: 6px;
+		gap: 25px;
 
-		.title {
-			font-size: 22px;
+		.titleContainer {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+
+			> * {
+				margin: 0;
+			}
+
+			.title {
+				font-size: 22px;
+			}
 		}
+		.form {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			margin-bottom: 7px;
+			min-width: 330px;
 
-		.subtitle {
-			color: $color-grey-2;
-		}
-
-		> * {
-			margin: 0;
+			.error {
+				color: $color-error;
+				margin: 0;
+			}
 		}
 	}
 }

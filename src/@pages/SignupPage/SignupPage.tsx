@@ -79,7 +79,7 @@ function SignupPage() {
 						))}
 						{(mutationError as string) && (
 							<h6 className={styles.error}>
-								{mutationError as string}
+								* {mutationError as string}
 							</h6>
 						)}
 					</div>
