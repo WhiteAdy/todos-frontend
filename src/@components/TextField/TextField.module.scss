@@ -1,0 +1,27 @@
+.TextField {
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid $color-grey-3;
+	padding-block: 10px;
+	color: $color-primary;
+	font-size: 16px;
+	width: 100%;
+
+	&:focus-visible {
+		border-bottom: 1px solid $color-dark-sky;
+		outline: none;
+	}
+
+	&::placeholder {
+		color: $color-grey-1;
+	}
+
+	&.isError {
+		border-bottom: 1px solid $color-error;
+		color: $color-error;
+
+		&::placeholder {
+			color: $color-error;
+		}
+	}
+}

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 function Card({ className, children }: ICard) {
 	return (
-		<div className={clsx(styles.Card, { [String(className)]: className })}>
+		<div className={clsx(styles.Card, { [className!]: className })}>
 			{children}
 		</div>
 	);

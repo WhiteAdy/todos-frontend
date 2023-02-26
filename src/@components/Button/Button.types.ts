@@ -5,7 +5,8 @@ interface IButton
 		ButtonHTMLAttributes<HTMLButtonElement>,
 		HTMLButtonElement
 	> {
-	variant?: 'transparent' | 'filled' | 'outlined';
+	variant?: 'filled' | 'transparent';
+	className?: string;
 	children: ReactNode;
 }
 
