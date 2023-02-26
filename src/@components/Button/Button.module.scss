@@ -1,0 +1,19 @@
+.Button {
+	padding: 10px 16px;
+
+	&.transparent {
+		background: transparent;
+		border: none;
+		color: $color-primary;
+		font-size: 14px;
+		transition: background-color $transition-timing,
+			color $transition-timing;
+		border-radius: $border-radius-1;
+
+		&:hover {
+			background-color: $color-primary;
+			cursor: pointer;
+			color: $color-white;
+		}
+	}
+}

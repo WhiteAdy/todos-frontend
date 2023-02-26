@@ -1,0 +1,22 @@
+.AppLayout {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+	.header {
+		padding: $layout-padding;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	main {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+
+		> * {
+			flex-grow: 1;
+		}
+	}
+}

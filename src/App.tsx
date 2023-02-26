@@ -1,11 +1,15 @@
-import { Card } from '@components';
+import { AppLayout } from '@layouts';
+import { TodosPage } from '@pages';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 function App() {
 	return (
-		<div className="App">
-			Todos app
-			<Card>test123</Card>
-		</div>
+		<Routes>
+			<Route path="/" element={<AppLayout />}>
+				<Route path="*" element={<Navigate to="/" />} />
+				<Route index element={<TodosPage />} />
+			</Route>
+		</Routes>
 	);
 }
 
