@@ -2,4 +2,11 @@ interface ITodoAddMutationProps {
 	title: string;
 }
 
-export type { ITodoAddMutationProps };
+type ITodosDTO = Array<{
+	id: number;
+	title: string;
+	completed: boolean;
+	userId: number;
+}>;
+
+export type { ITodoAddMutationProps, ITodosDTO };

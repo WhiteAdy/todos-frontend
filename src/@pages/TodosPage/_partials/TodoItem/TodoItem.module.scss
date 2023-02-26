@@ -1,0 +1,22 @@
+.TodoItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 5px;
+	padding-block: 4px;
+	max-width: 440px;
+
+	.close_btn {
+		opacity: 0;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 2px;
+	}
+
+	&:hover {
+		.close_btn {
+			opacity: 1;
+		}
+	}
+}

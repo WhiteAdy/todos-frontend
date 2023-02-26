@@ -21,4 +21,22 @@ const addTodoPost = async ({ title }: ITodoAddMutationProps) => {
 	return res.json();
 };
 
-export { addTodoPost };
+const todosGet = async () => {
+	const jwt = localStorage.getItem(LOCALSTORAGE_JWT_KEY);
+
+	const res = await fetch(`${API_BASEPATH}/todos`, {
+		headers: {
+			'Content-Type': 'application/json',
+			authorization: `Bearer ${jwt?.replaceAll('"', '')}`,
+		},
+	});
+
+	if (!res.ok) {
+		if (res.status === 401) return Promise.reject(401);
+		return res.text().then((errMsg) => Promise.reject(errMsg));
+	}
+
+	return res.json();
+};
+
+export { addTodoPost, todosGet };

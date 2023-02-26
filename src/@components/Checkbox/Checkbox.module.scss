@@ -1,0 +1,27 @@
+.Checkbox {
+	.label_wrapper {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		cursor: pointer;
+
+		input {
+			display: none;
+
+			&:checked {
+				& ~ .fake_check_container {
+					background-color: $color-dark-sky;
+				}
+			}
+		}
+
+		.fake_check_container {
+			border: 1px solid rgba(0, 0, 0, 0.25);
+			width: 18px;
+			height: 18px;
+			border-radius: $border-radius-2;
+			display: grid;
+			place-items: center;
+		}
+	}
+}
