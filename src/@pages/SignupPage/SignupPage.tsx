@@ -1,11 +1,12 @@
 import { Button, Card, TextField } from '@components';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './SignupPage.module.scss';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import { signupPost } from './SignupPage.api';
 import { useMutation } from '@tanstack/react-query';
 import { ISignupMutationProps } from './SignupPage.types';
+import { useSnackbar } from 'notistack';
 
 const FORM_ID = 'signup-form';
 
@@ -13,14 +14,19 @@ function SignupPage() {
 	const {
 		handleSubmit,
 		register,
-		formState: { errors },
+		formState: { errors: formErrors },
 	} = useForm<ISignupMutationProps>();
+
+	const navitate = useNavigate();
+	const { enqueueSnackbar } = useSnackbar();
 
 	const onSubmit = (values: ISignupMutationProps) => mutate(values);
 
-	const { mutate } = useMutation(signupPost, {
-		onSuccess: (data) => console.log('success: ', data),
-		onError: (err) => console.log('err: ', err),
+	const { mutate, error: mutationError } = useMutation(signupPost, {
+		onSuccess: (responseMsg) => {
+			enqueueSnackbar(responseMsg);
+			navitate('/login');
+		},
 	});
 
 	return (
@@ -43,7 +49,7 @@ function SignupPage() {
 							required: 'Please enter your full name',
 						})}
 						placeholder="Full Name"
-						isError={Boolean(errors.fullName)}
+						isError={Boolean(formErrors.fullName)}
 					/>
 					<TextField
 						{...register('email', {
@@ -51,7 +57,7 @@ function SignupPage() {
 						})}
 						placeholder="Email"
 						type="email"
-						isError={Boolean(errors.email)}
+						isError={Boolean(formErrors.email)}
 					/>
 					<TextField
 						{...register('password', {
@@ -59,18 +65,25 @@ function SignupPage() {
 						})}
 						placeholder="Password"
 						type="password"
-						isError={Boolean(errors.password)}
+						isError={Boolean(formErrors.password)}
 					/>
 					<Link to="/login">Do have an account? Sign in.</Link>
 					<div className={styles.errors_container}>
-						{Object.entries(errors).map(([_key, error], index) => (
-							<h6
-								key={`signup-error-${index}`}
-								className={styles.error}
-							>
-								* {error!.message as string}
-							</h6>
-						))}
+						<>
+							{Object.entries(formErrors).map(([key, error]) => (
+								<h6
+									key={`signup-error-${key}`}
+									className={styles.error}
+								>
+									* {error!.message as string}
+								</h6>
+							))}
+							{mutationError && (
+								<h6 className={styles.error}>
+									{mutationError as string}
+								</h6>
+							)}
+						</>
 					</div>
 				</form>
 				<Button className={styles.submit} form={FORM_ID}>
