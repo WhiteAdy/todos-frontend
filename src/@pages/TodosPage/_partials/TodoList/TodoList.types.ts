@@ -2,9 +2,9 @@ interface ITodoList {
 	items: Array<{ id: number; title: string; completed: boolean }>;
 }
 
-interface ITodoPatch {
+interface ITodoPut {
 	id: number;
 	completed: boolean;
 }
 
-export type { ITodoList, ITodoPatch };
+export type { ITodoList, ITodoPut };

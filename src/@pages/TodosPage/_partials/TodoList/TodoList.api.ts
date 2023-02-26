@@ -1,7 +1,7 @@
 import { API_BASEPATH, LOCALSTORAGE_JWT_KEY } from '@config/constants';
-import { ITodoPatch } from './TodoList.types';
+import { ITodoPut } from './TodoList.types';
 
-const todoPatch = async ({ id, completed }: ITodoPatch) => {
+const todoPut = async ({ id, completed }: ITodoPut) => {
 	const jwt = localStorage.getItem(LOCALSTORAGE_JWT_KEY);
 
 	const res = await fetch(`${API_BASEPATH}/todos/${id}`, {
@@ -21,4 +21,4 @@ const todoPatch = async ({ id, completed }: ITodoPatch) => {
 	return res.text();
 };
 
-export { todoPatch };
+export { todoPut };
