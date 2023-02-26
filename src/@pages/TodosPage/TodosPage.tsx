@@ -2,8 +2,8 @@ import { Card, TextField } from '@components';
 import styles from './TodosPage.module.scss';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import { useForm } from 'react-hook-form';
-import { ITodoAddMutationProps, ITodosDTO } from './TodosPage.types';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { ITodoAddMutationProps, ITodoItem, ITodosDTO } from './TodosPage.types';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { addTodoPost, todosGet } from './TodosPage.api';
 import { useSnackbar } from 'notistack';
 import { useUserContext } from '@contexts';
@@ -21,6 +21,7 @@ function TodosPage() {
 
 	const { enqueueSnackbar } = useSnackbar();
 	const { logout } = useUserContext();
+	const queryClient = useQueryClient();
 
 	const { data: todos } = useQuery(['todos'], todosGet, {
 		select: (data: ITodosDTO) => {
@@ -42,11 +43,13 @@ function TodosPage() {
 	const { mutate: addTodoMutation, error: mutationError } = useMutation(
 		addTodoPost,
 		{
-			onSuccess: (data) => {
-				console.log('success: ', data);
+			onSuccess: (newItem: ITodoItem) => {
+				queryClient.setQueryData(['todos'], (oldData: any) => [
+					...oldData,
+					newItem,
+				]);
 			},
 			onError: (err) => {
-				console.log('error: ', err);
 				if (err === 401) {
 					enqueueSnackbar('Your user session has expired!');
 					logout();
@@ -56,9 +59,8 @@ function TodosPage() {
 	);
 
 	const onSubmit = (form: ITodoAddMutationProps) => {
-		console.log('submit: ', form);
-		reset();
 		addTodoMutation(form);
+		reset();
 	};
 
 	return (
