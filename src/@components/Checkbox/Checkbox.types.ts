@@ -2,7 +2,7 @@ interface ICheckbox {
 	className?: string;
 	label: string;
 	checked?: boolean;
-	onChange?: () => {};
+	onChange?: () => void;
 }
 
 export type { ICheckbox };

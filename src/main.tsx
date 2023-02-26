@@ -8,7 +8,9 @@ import { SnackbarProvider, SnackbarProviderProps } from 'notistack';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: { queries: { retry: 1 } },
+});
 
 const snackbarProviderProps: Omit<SnackbarProviderProps, 'children'> = {
 	autoHideDuration: 3500,
