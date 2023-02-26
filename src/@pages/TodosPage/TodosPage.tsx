@@ -4,7 +4,7 @@ import styles from './TodosPage.module.scss';
 function TodosPage() {
 	return (
 		<div className={styles.TodosPage}>
-			<Card>test123</Card>
+			<Card>Todos Page</Card>
 		</div>
 	);
 }
