@@ -7,4 +7,8 @@ interface ITodoPut {
 	completed: boolean;
 }
 
-export type { ITodoList, ITodoPut };
+interface ITodoDelete {
+	id: number;
+}
+
+export type { ITodoList, ITodoPut, ITodoDelete };
