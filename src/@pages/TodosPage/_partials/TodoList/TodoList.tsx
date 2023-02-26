@@ -68,6 +68,7 @@ function TodoList({ items }: ITodoList) {
 							type="radio"
 							name="show"
 							onChange={() => setActiveFilter(undefined)}
+							defaultChecked
 						/>
 						<span>All</span>
 					</label>
