@@ -5,4 +5,50 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+
+	max-height: 260px;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 5px;
+		height: 5px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 15px;
+		background: $color-dark-sky;
+	}
+}
+
+.filter_container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	.show_label {
+		color: $color-dark-blue-grey;
+		font-size: 14px;
+		margin-right: 7px;
+	}
+
+	label {
+		cursor: pointer;
+
+		input {
+			display: none;
+
+			& ~ span {
+				color: $color-dark-sky;
+				border-bottom: 1px solid $color-dark-sky;
+				font-size: 14px;
+			}
+
+			&:checked {
+				& ~ span {
+					color: $color-primary;
+					border-bottom: none;
+				}
+			}
+		}
+	}
 }
