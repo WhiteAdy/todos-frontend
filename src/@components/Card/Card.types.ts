@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 interface ICard {
+	className?: string;
 	children: ReactNode;
 }
 

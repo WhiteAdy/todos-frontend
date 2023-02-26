@@ -2,4 +2,22 @@
 	height: 100%;
 	display: grid;
 	place-items: center;
+
+	.titleContainer {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+
+		.title {
+			font-size: 22px;
+		}
+
+		.subtitle {
+			color: $color-grey-2;
+		}
+
+		> * {
+			margin: 0;
+		}
+	}
 }

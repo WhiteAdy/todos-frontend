@@ -2,4 +2,28 @@
 	height: 100%;
 	display: grid;
 	place-items: center;
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+
+		.titleContainer {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+
+			> * {
+				margin: 0;
+			}
+
+			.title {
+				font-size: 22px;
+			}
+
+			.subtitle {
+				color: $color-grey-2;
+			}
+		}
+	}
 }
